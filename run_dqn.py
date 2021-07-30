@@ -12,7 +12,7 @@ from environment import LumberJackEnv
 
 
 class RLMgr:
-    def __init__(self, env, n_episode=200, model='dqn', batch_size=32, eps_decay=0.005, lr=1e-4):
+    def __init__(self, env, n_episode=200, batch_size=32, eps_decay=0.005, lr=1e-4):
         self.env = env
         self.n_action = env.n_action
         self.n_episode = n_episode
@@ -20,11 +20,12 @@ class RLMgr:
         self.memory = Memory(batch_size * 20)
         self.eps_decay = eps_decay
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        if model == 'dqn':
-            self.model = DQN(self.n_action).to(self.device)
-            self.t_model = DQN(self.n_action).to(self.device)
-            self.update_target_model()
-            self.t_model.eval()
+        
+        self.model = DQN(self.n_action).to(self.device)
+        self.t_model = DQN(self.n_action).to(self.device)
+        self.update_target_model()
+        self.t_model.eval()
+        
         else:
             raise Exception('wrong model')
         self.optimizer = optim.Adam(self.model.parameters(), lr=lr)
