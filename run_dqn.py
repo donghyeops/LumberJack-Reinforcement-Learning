@@ -26,6 +26,8 @@ class RLMgr:
         self.update_target_model()
         self.t_model.eval()
         
+        if True:
+            pass
         else:
             raise Exception('wrong model')
         self.optimizer = optim.Adam(self.model.parameters(), lr=lr)
