@@ -27,6 +27,7 @@ class RLMgr:
         self.t_model.eval()
 
         # 이것은 PR용 테스트입니다.
+        # 이것은 PR용 테스트입니다2
         
         self.optimizer = optim.Adam(self.model.parameters(), lr=lr)
 
