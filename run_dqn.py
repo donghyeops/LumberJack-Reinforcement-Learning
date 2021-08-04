@@ -25,6 +25,8 @@ class RLMgr:
         self.t_model = DQN(self.n_action).to(self.device)
         self.update_target_model()
         self.t_model.eval()
+
+        # 이것은 PR용 테스트입니다.
         
         self.optimizer = optim.Adam(self.model.parameters(), lr=lr)
 
